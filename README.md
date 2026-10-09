@@ -28,11 +28,11 @@ Tudo fica salvo no navegador de quem usa. Cada mudança pode ser exportada para 
 
 ## Ajuda da IA
 
-A página usa um modelo da OpenAI (gpt-4o-mini por padrão). A chave nunca fica no repositório.
+A página usa um modelo da OpenAI: gpt-4o-mini por padrão, ou o modelo definido no servidor intermediário pela variável MODELO (por exemplo gpt-6.1-sol, que raciocina antes de responder). A chave nunca fica no repositório.
 
 **Chave no navegador.** No botão IA, a pessoa informa a própria chave da OpenAI; ela fica salva só naquele navegador e é enviada apenas à OpenAI, a cada clique em Sugerir ou Revisar.
 
-**Servidor intermediário, para a turma.** Um Cloudflare Worker guarda a chave e recebe os pedidos da página, protegido por senha. O arquivo `proxy/worker.js` traz o código e o passo a passo. Com o Worker publicado, um link pronto configura a IA no navegador de quem o abre:
+**Servidor intermediário, para a turma.** Um Cloudflare Worker guarda a chave e recebe os pedidos da página, protegido por senha. O arquivo `proxy/worker.js` traz o código e o passo a passo; as variáveis MODELO e ESFORCO, opcionais, escolhem o modelo e o esforço de raciocínio para todos os pedidos. Com o Worker publicado, um link pronto configura a IA no navegador de quem o abre:
 
 ```
 https://SEU-USUARIO.github.io/playbook-gestao-da-mudanca/?ia=https://NOME.SEU-USUARIO.workers.dev&senha=SENHA
